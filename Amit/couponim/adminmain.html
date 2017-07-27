@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<script src="../Scripts/angular.js"></script>
+<script src="../Scripts/angular-ui-router.js"></script>
+<script src="../Scripts/AdminRoute.js"></script>
+<script src="../Scripts/mockService.js"></script>
+<script src="../Scripts/loginService.js"></script>
+<script src="../Scripts/adminMainCTRL.js"></script>
+<script src="../Scripts/createCompanyCTRL.js"></script>
+<script src="../Scripts/createCustomerCTRL.js"></script>
+<script src="../Scripts/manageCompaniesCTRL.js"></script>
+<script src="../Scripts/manageCustomersCTRL.js"></script>
+<script src="../sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../CSS/main.css">
+<link rel="stylesheet" href="../sweetalert-master/dist/sweetalert.css">
+<title>Main Admin Page</title>
+</head>
+<body class="w3-animate-zoom" ng-controller="adminMainCTRL as c">
+		<div ng-click="c.logout()">
+		<a href="">Logout<img alt="" src="../Ico/logout.png"></a> 
+		</div>
+
+	<div class="w3-animate-bottom">
+		<div style="text-align: center">
+			<img alt="adminPhoto" src="../Img/admin.png" width="300px"
+				height="300px">
+		</div>
+		<ul class="row">
+			<li class="col-sm-4"><a href="#/main"><img alt="Main" src="../Ico/main.png"></a></li>
+			<li class="col-sm-4"><a href="#/manageCompanies"><img alt="Manage Companies"
+					src="../Ico/companies.png"></a></li>
+			<li class="col-sm-4"><a href="#/manageCustomers"><img alt="Manage Customers"
+					src="../Ico/customers.png"></a></li>
+		</ul>
+
+		
+		<div ui-view class="w3-animate-bottom row" >
+				<blockquote class="col-sm-12" style="text-align: center;">
+				<br/>
+					Welcome Admin!<br /> We welcome you to try out most convenient
+					Admin experience.<br /> Designed with the most advanced tools.<br />
+					Update, Delete or Create your Companies and Customers - with only
+					one click!<br />
+					<footer>
+						<cite>Daniel Liverant</cite>
+					</footer>
+				</blockquote>
+		</div>
+	</div><!-- animation -->
+</body>
+</html>

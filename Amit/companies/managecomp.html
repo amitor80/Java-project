@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../Scripts/angular.js"></script>
+<script src="../Scripts/angular-ui-router.js"></script>
+<script src="../Scripts/AdminRoute.js"></script>
+<script src="../Scripts/createCompanyCTRL.js"></script>
+<script src="../sweetalert-master/dist/sweetalert.min.js"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="w3-animate-bottom">
+
+	<!-- ============================================================================================== -->
+	<!-- Serach by ID box -->
+	<!-- ============================================================================================== -->
+	<button ng-click="g.getCompany()" style="margin-left: 450px;position: absolute;">
+		<img alt="Seacrh by id" src="../Ico/search by id.png">
+	</button>
+	<!-- ============================================================================================== -->
+	<!-- New Company form -->
+	<!-- ============================================================================================== -->
+	<button ng-click="g.createCompanyShow()" style="margin-left: 778px; position: absolute;">
+		<img alt="Create" src="../Ico/+.png" width="200px" height="20px">
+	</button>
+	<span ng-show="g.createCompanyButton">
+		<span ng-controller="createCompanyCTRL as c" ng-app="myApp">
+			<ng-include src="'createCompany.html'"></ng-include>
+		</span>
+	<button ng-click="g.hide()" style="margin-left: 655px; height: 40px; width: 80px; position: absolute; color: black;">Hide</button>
+	<br/>
+	</span>
+	<!-- ============================================================================================== -->
+	<!-- Result of the search table -->
+	<!-- ============================================================================================= -->
+	<span ng-show="g.showCompany">
+	<br/>
+	<br/>
+		<table border="1" style="width: 545px; margin-left: 450px">
+			<tr>
+				<th ng-click="g.orderBy('id')">ID</th>
+				<th ng-click="g.orderBy('comp_name')">Name</th>
+				<th ng-click="g.orderBy('email')">Email</th>
+				<th>actions</th>
+			</tr>
+			<tr>
+				<td>{{g.company.id}}</td>
+				<td>{{g.company.comp_name}}</td>
+				<td>{{g.company.email}}</td>
+				<td>
+					<button data-ng-click="g.deleteCompany(g.company.id)">
+						<img alt="X" src="../Ico/x.png" width="20px" height="20px">
+					</button>
+					<button name="update" ng-click="g.showUpdateCompany()">
+						<img alt="O" src="../Ico/edit.png" width="20px" height="20px">
+					</button>
+				</td>
+				<td ng-show="g.show">Company id: <input
+					value="{{g.company.id}}" disabled="disabled"><br />
+					Company name: <input value="{{g.company.comp_name}}"
+					disabled="disabled"><br /> Company email: <input
+					ng-model="g.company.email"><br />
+					<button ng-click="g.hideUpdateCompany(g.company)">Save</button>
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<button ng-click="g.hide()" style="margin-left: 655px; height: 40px; width: 80px; position: absolute; color: black;">Hide</button>
+		<br/>
+	</span>
+	<!-- ============================================================================================== -->
+	<!-- All Companies table -->
+	<!-- ============================================================================================== -->
+	<br/>
+	<br/>
+	<table border="1" style="margin-left: 450px; width: 540px">
+		<tr>
+			<th ng-click="g.orderBy('id')"> <span ng-if="g.goUp">ID▼</span><span ng-if="!g.goUp">ID▲</span> </th>
+			<th ng-click="g.orderBy('comp_name')"><span ng-if="g.goUp">NAME▼</span><span ng-if="!g.goUp">NAME▲</span></th>
+			<th ng-click="g.orderBy('email')"><span ng-if="g.goUp">EMAIL▼</span><span ng-if="!g.goUp">EMAIL▲</span></th>
+			<th>ACTIONS</th>
+		</tr>
+		<tr ng-repeat="c in g.companies | orderBy: g.order : g.goUp">
+			<td>{{c.id}}</td>
+			<td>{{c.comp_name}}</td>
+			<td>{{c.email}}</td>
+			<td>
+				<button data-ng-click="g.deleteCompany(c.id)">
+					<img alt="X" src="../Ico/x.png" width="20px" height="20px">
+				</button>
+				<button name="update" ng-click="g.showUpdateCompany()">
+					<img alt="O" src="../Ico/edit.png" width="20px" height="20px">
+				</button>
+			</td>
+			<td ng-show="g.show">Company id: <input value="{{c.id}}"
+				disabled="disabled"><br /> Company name: <input
+				value="{{c.comp_name}}" disabled="disabled"><br />Company
+				email: <input ng-model="c.email"><br />
+				<button ng-click="g.hideUpdateCompany(c)">Save</button>
+			</td>
+			<!--replace $index with c (the company)-->
+		</tr>
+	</table>
+	<!-- ============================================================================================== -->
+	<!--  -->
+	<!-- ============================================================================================== -->
+</div>
+</body>
+</html>

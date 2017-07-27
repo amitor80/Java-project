@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<style type="text/css">
+</style>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<span class="w3-animate-bottom">
+	<!-- ============================================================================================== -->
+	<!--  Search by ID table results -->
+	<!-- ============================================================================================== -->
+	<div ng-show="c.showSearch" style="margin-left: 500px; width: 949px;">
+		<h3>Search by ID results:</h3>
+		<table border="1">
+			<tr>
+				<th ng-click="c.orderBy('id')">ID</th>
+				<th ng-click="c.orderBy('title')">Title</th>
+				<th ng-click="c.orderBy('start_date')">Start Date</th>
+				<th ng-click="c.orderBy('end_date')">End date</th>
+				<th ng-click="c.orderBy('amount')">Amount</th>
+				<th ng-click="c.orderBy('type')">Type</th>
+				<th ng-click="c.orderBy('message')">Message</th>
+				<th ng-click="c.orderBy('price')">Price</th>
+				<th ng-click="c.orderBy('image')">Image</th>
+				<th>Actions</th>
+			</tr>
+			<tr>
+				<td>{{c.searchedCoupon.id}}</td>
+				<td>{{c.searchedCoupon.title}}</td>
+				<td>{{c.searchedCoupon.start_date}}</td>
+				<td>{{c.searchedCoupon.end_date}}</td>
+				<td>{{c.searchedCoupon.amount}}</td>
+				<td>{{c.searchedCoupon.type}}</td>
+				<td>{{c.searchedCoupon.message}}</td>
+				<td>{{c.searchedCoupon.price}}$</td>
+				<td><img alt="" src={{c.searchedCoupon.image}} width="100px"
+					height="100px"></td>
+				<td>&nbsp
+					<button ng-click="c.deleteCoupon(c.searchedCoupon.id)">
+						<img alt="X" src="../Ico/x.png" width="20px" height="20px">
+					</button> &nbsp
+					<button ng-click="c.showUpdateButton()">
+						<img alt="O" src="../Ico/edit.png" width="20px" height="20px">
+					</button> &nbsp
+				</td>
+				<td ng-show="c.showUpdate">ID: <input disabled="disabled"
+					value="{{c.searchedCoupon.id}}"> <br /> Title: <input
+					ng-model="c.searchedCoupon.title"> <br /> Start Date: <input
+					ng-model="c.searchedCoupon.start_date"><br /> End Date: <input
+					ng-model="c.searchedCoupon.end_date"><br /> Amount: <input
+					ng-model="c.searchedCoupon.amount"><br /> Type: <input
+					ng-model="c.searchedCoupon.type"><br /> Message: <input
+					ng-model="c.searchedCoupon.message"><br /> Price: <input
+					ng-model="c.searchedCoupon.price"><br /> Image: <input
+					ng-model="c.searchedCoupon.image"><br />
+					<button ng-click="c.saveUpdateButton(c.searchedCoupon)">Save&Close</button>
+				</td>
+			</tr>
+		</table>
+		<br />
+		<button ng-click="c.hideAll()">Hide</button>
+	</div>
+	<!-- ============================================================================================== -->
+	<!-- Search by Type table results -->
+	<!-- ============================================================================================== -->
+	<div ng-show="c.showSearchByType" style="margin-left: 500px; width: 949px;">
+		<h3>Search by Type results:</h3>
+		<table border="1">
+			<tr>
+				<th ng-click="c.orderBy('id')"><span ng-if="c.goUp">ID▼</span><span ng-if="!c.goUp">ID▲</span></th>
+				<th ng-click="c.orderBy('title')"><span ng-if="c.goUp">TITLE▼</span><span ng-if="!c.goUp">TITLE▲</span></th>
+				<th ng-click="c.orderBy('start_date')"><span ng-if="c.goUp">START DATE▼</span><span ng-if="!c.goUp">START DATE▲</span></th>
+				<th ng-click="c.orderBy('end_date')"><span ng-if="c.goUp">END DATE▼</span><span ng-if="!c.goUp">END DATE▲</span></th>
+				<th ng-click="c.orderBy('amount')"><span ng-if="c.goUp">AMOUNT▼</span><span ng-if="!c.goUp">AMOUNT▲</span></th>
+				<th ng-click="c.orderBy('type')"><span ng-if="c.goUp">TYPE▼</span><span ng-if="!c.goUp">TYPE▲</span></th>
+				<th ng-click="c.orderBy('message')"><span ng-if="c.goUp">MESSAGE▼</span><span ng-if="!c.goUp">MESSAGE▲</span></th>
+				<th ng-click="c.orderBy('price')"><span ng-if="c.goUp">PRICE▼</span><span ng-if="!c.goUp">PRICE▲</span></th>
+				<th ng-click="c.orderBy('image')"><span ng-if="c.goUp">IMAGE▼</span><span ng-if="!c.goUp">IMAGE▲</span></th>
+				<th>Actions</th>
+			</tr>
+			<tr
+				ng-repeat="c2 in c.searchedCouponsByType | orderBy: c.order : c.goUp">
+				<td>{{c2.id}}</td>
+				<td>{{c2.title}}</td>
+				<td>{{c2.start_date}}</td>
+				<td>{{c2.end_date}}</td>
+				<td>{{c2.amount}}</td>
+				<td>{{c2.type}}</td>
+				<td>{{c2.message}}</td>
+				<td>{{c2.price}} $</td>
+				<td><img alt="" src={{c2.image}} width="100px" height="100px"></td>
+				<td>&nbsp
+					<button ng-click="c.deleteCoupon(c2.id)">
+						<img alt="X" src="../Ico/x.png" width="20px" height="20px">
+					</button> &nbsp
+					<button ng-click="c.showUpdateButton()">
+						<img alt="O" src="../Ico/edit.png" width="20px" height="20px">
+					</button> &nbsp
+				</td>
+				<td ng-show="c.showUpdate">ID: <input disabled="disabled"
+					value="{{c2.id}}"> <br /> Title: <input
+					ng-model="c2.title"> <br /> Start Date: <input
+					ng-model="c2.start_date"><br /> End Date: <input
+					ng-model="c2.end_date"><br /> Amount: <input
+					ng-model="c2.amount"><br /> Type: <input
+					ng-model="c2.type"><br /> Message: <input
+					ng-model="c2.message"><br /> Price: <input
+					ng-model="c2.price"><br /> Image: <input
+					ng-model="c2.image"><br />
+					<button ng-click="c.saveUpdateButton(c2)">Save&Close</button>
+				</td>
+			</tr>
+		</table>
+		<br />
+		<button ng-click="c.hideAll()">Hide</button>
+	</div>
+	<!-- ============================================================================================== -->
+	<!-- Search By Price table results -->
+	<!-- ============================================================================================== -->
+	<div ng-show="c.showSearchByPrice"
+		style="margin-left: 500px; width: 949px;">
+		<h3>Search by Price results:</h3>
+		<table border="1">
+			<tr>
+				<th ng-click="c.orderBy('id')"><span ng-if="c.goUp">ID▼</span><span ng-if="!c.goUp">ID▲</span></th>
+				<th ng-click="c.orderBy('title')"><span ng-if="c.goUp">TITLE▼</span><span ng-if="!c.goUp">TITLE▲</span></th>
+				<th ng-click="c.orderBy('start_date')"><span ng-if="c.goUp">START DATE▼</span><span ng-if="!c.goUp">START DATE▲</span></th>
+				<th ng-click="c.orderBy('end_date')"><span ng-if="c.goUp">END DATE▼</span><span ng-if="!c.goUp">END DATE▲</span></th>
+				<th ng-click="c.orderBy('amount')"><span ng-if="c.goUp">AMOUNT▼</span><span ng-if="!c.goUp">AMOUNT▲</span></th>
+				<th ng-click="c.orderBy('type')"><span ng-if="c.goUp">TYPE▼</span><span ng-if="!c.goUp">TYPE▲</span></th>
+				<th ng-click="c.orderBy('message')"><span ng-if="c.goUp">MESSAGE▼</span><span ng-if="!c.goUp">MESSAGE▲</span></th>
+				<th ng-click="c.orderBy('price')"><span ng-if="c.goUp">PRICE▼</span><span ng-if="!c.goUp">PRICE▲</span></th>
+				<th ng-click="c.orderBy('image')"><span ng-if="c.goUp">IMAGE▼</span><span ng-if="!c.goUp">IMAGE▲</span></th>
+				<th>Actions</th>
+			</tr>
+			<tr
+				ng-repeat="c3 in c.searchedCouponsByPrice | orderBy: c.order : c.goUp">
+				<td>{{c3.id}}</td>
+				<td>{{c3.title}}</td>
+				<td>{{c3.start_date}}</td>
+				<td>{{c3.end_date}}</td>
+				<td>{{c3.amount}}</td>
+				<td>{{c3.type}}</td>
+				<td>{{c3.message}}</td>
+				<td>{{c3.price}} $</td>
+				<td><img alt="" src={{c3.image}} width="100px" height="100px"></td>
+				<td>&nbsp
+					<button ng-click="c.deleteCoupon(c3.id)">
+						<img alt="X" src="../Ico/x.png" width="20px" height="20px">
+					</button> &nbsp
+					<button ng-click="c.showUpdateButton()">
+						<img alt="O" src="../Ico/edit.png" width="20px" height="20px">
+					</button> &nbsp
+				</td>
+				<td ng-show="c.showUpdate">ID: <input disabled="disabled"
+					value="{{c3.id}}"> <br /> Title: <input
+					ng-model="c3.title"> <br /> Start Date: <input
+					ng-model="c3.start_date"><br /> End Date: <input
+					ng-model="c3.end_date"><br /> Amount: <input
+					ng-model="c3.amount"><br /> Type: <input
+					ng-model="c3.type"><br /> Message: <input
+					ng-model="c3.message"><br /> Price: <input
+					ng-model="c3.price"><br /> Image: <input
+					ng-model="c3.image"><br />
+					<button ng-click="c.saveUpdateButton(c3)">Save&Close</button>
+				</td>
+			</tr>
+		</table>
+		<br />
+		<button ng-click="c.hideAll()">Hide</button>
+	</div>
+	<!-- ============================================================================================== -->
+	<!-- Search by Date table results -->
+	<!-- ============================================================================================== -->
+	<div ng-show="c.showSearchByDate"
+		style="margin-left: 500px; width: 949px;">
+		<h3>Search by Date results:</h3>
+		<table border="1">
+			<tr>
+				<th ng-click="c.orderBy('id')"><span ng-if="c.goUp">ID ▼</span><span ng-if="!c.goUp">ID ▲</span></th>
+				<th ng-click="c.orderBy('title')"><span ng-if="c.goUp">TITLE ▼</span><span ng-if="!c.goUp">TITLE ▲</span></th>
+				<th ng-click="c.orderBy('start_date')"><span ng-if="c.goUp">START DATE ▼</span><span ng-if="!c.goUp">START DATE ▲</span></th>
+				<th ng-click="c.orderBy('end_date')"><span ng-if="c.goUp">END DATE ▼</span><span ng-if="!c.goUp">END DATE ▲</span></th>
+				<th ng-click="c.orderBy('amount')"><span ng-if="c.goUp">AMOUNT ▼</span><span ng-if="!c.goUp">AMOUNT ▲</span></th>
+				<th ng-click="c.orderBy('type')"><span ng-if="c.goUp">TYPE ▼</span><span ng-if="!c.goUp">TYPE ▲</span></th>
+				<th ng-click="c.orderBy('message')"><span ng-if="c.goUp">MESSAGE ▼</span><span ng-if="!c.goUp">MESSAGE ▲</span></th>
+				<th ng-click="c.orderBy('price')"><span ng-if="c.goUp">PERICE ▼</span><span ng-if="!c.goUp">PRICE ▲</span></th>
+				<th ng-click="c.orderBy('image')"><span ng-if="c.goUp">IMAGE ▼</span><span ng-if="!c.goUp">IMAGE ▲</span></th>
+				<th>Actions</th>
+			</tr>
+			<tr
+				ng-repeat="c4 in c.searchedCouponsByDate | orderBy: c.order : c.goUp">
+				<td>{{c4.id}}</td>
+				<td>{{c4.title}}</td>
+				<td>{{c4.start_date}}</td>
+				<td>{{c4.end_date}}</td>
+				<td>{{c4.amount}}</td>
+				<td>{{c4.type}}</td>
+				<td>{{c4.message}}</td>
+				<td>{{c4.price}} $</td>
+				<td><img alt="" src={{c4.image}} width="100px" height="100px"></td>
+				<td>&nbsp
+					<button ng-click="c.deleteCoupon(c4.id)">
+						<img alt="X" src="../Ico/x.png" width="20px" height="20px">
+					</button> &nbsp
+					<button ng-click="c.showUpdateButton()">
+						<img alt="O" src="../Ico/edit.png" width="20px" height="20px">
+					</button> &nbsp
+				</td>
+				<td ng-show="c.showUpdate">ID: <input disabled="disabled"
+					value="{{c4.id}}"> <br /> Title: <input
+					ng-model="c4.title"> <br /> Start Date: <input
+					ng-model="c4.start_date"><br /> End Date: <input
+					ng-model="c4.end_date"><br /> Amount: <input
+					ng-model="c4.amount"><br /> Type: <input
+					ng-model="c4.type"><br /> Message: <input
+					ng-model="c4.message"><br /> Price: <input
+					ng-model="c4.price"><br /> Image: <input
+					ng-model="c4.image"><br />
+					<button ng-click="c.saveUpdateButton(c4)">Save&Close</button>
+				</td>
+			</tr>
+		</table>
+		<br />
+		<button ng-click="c.hideAll()">Hide</button>
+	</div>
+	<!-- ============================================================================================== -->
+	<!-- All Companies table -->
+	<!-- ============================================================================================== -->
+	<div style="position: absolute; margin-left: 500px; width: 949px">
+		<table border="1">
+			<tr>
+				<th ng-click="c.orderBy('id')"><span ng-if="c.goUp">ID▼</span><span ng-if="!c.goUp">ID▲</span></th>
+				<th ng-click="c.orderBy('title')"><span ng-if="c.goUp">TITLE▼</span><span ng-if="!c.goUp">TITLE▲</span></th>
+				<th ng-click="c.orderBy('start_date')"><span ng-if="c.goUp">START DATE▼</span><span ng-if="!c.goUp">START DATE▲</span></th>
+				<th ng-click="c.orderBy('end_date')"><span ng-if="c.goUp">END DATE▼</span><span ng-if="!c.goUp">END DATE▲</span></th>
+				<th ng-click="c.orderBy('amount')"><span ng-if="c.goUp">AMOUNT▼</span><span ng-if="!c.goUp">AMOUNT▲</span></th>
+				<th ng-click="c.orderBy('type')"><span ng-if="c.goUp">TYPE▼</span><span ng-if="!c.goUp">TYPE▲</span></th>
+				<th ng-click="c.orderBy('message')"><span ng-if="c.goUp">MESSAGE▼</span><span ng-if="!c.goUp">MESSAGE▲</span></th>
+				<th ng-click="c.orderBy('price')"><span ng-if="c.goUp">PRICE▼</span><span ng-if="!c.goUp">PRICE▲</span></th>
+				<th ng-click="c.orderBy('image')"><span ng-if="c.goUp">IMAGE▼</span><span ng-if="!c.goUp">IMAGE▲</span></th>
+				<th>Actions</th>
+			</tr>
+			<tr ng-repeat="c1 in c.coupons | orderBy: c.order : c.goUp">
+				<td>{{c1.id}}</td>
+				<td>{{c1.title}}</td>
+				<td>{{c1.start_date}}</td>
+				<td>{{c1.end_date}}</td>
+				<td>{{c1.amount}}</td>
+				<td>{{c1.type}}</td>
+				<td>{{c1.message}}</td>
+				<td>{{c1.price}} $</td>
+				<td><img alt="" src={{c1.image}} width="100px" height="100px"></td>
+				<td style="width: 100px">&nbsp
+					<button ng-click="c.deleteCoupon(c1.id)">
+						<img alt="X" src="../Ico/x.png" width="20px" height="20px">
+					</button> &nbsp
+					<button ng-click="c.showUpdateButton()">
+						<img alt="O" src="../Ico/edit.png" width="20px" height="20px">
+					</button> &nbsp
+				</td>
+				<td ng-show="c.showUpdate">ID: <input disabled="disabled"
+					value="{{c1.id}}"> <br /> Title: <input
+					ng-model="c1.title"> <br /> Start Date: <input
+					ng-model="c1.start_date"><br /> End Date: <input
+					ng-model="c1.end_date"><br /> Amount: <input
+					ng-model="c1.amount"><br /> Type: <input
+					ng-model="c1.type"><br /> Message: <input
+					ng-model="c1.message"><br /> Price: <input
+					ng-model="c1.price"><br /> Image: <input
+					ng-model="c1.image"><br />
+					<button ng-click="c.saveUpdateButton(c1)">Save&Close</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<!-- ============================================================================================== -->
+	<!-- Search by ID -->
+	<!-- ============================================================================================== -->
+	<br /> 
+	&nbsp;Search by ID:
+	<input ng-model="c.searchID" placeholder="Insert Coupon ID...."
+		type="number">
+	<button ng-click="c.searchByID()">
+		<img alt="Search" src="../Ico/search.png" height="19px">
+	</button>
+	<br />
+	<br />
+
+	<!-- ============================================================================================== -->
+	<!-- Search by Category -->
+	<!-- ============================================================================================== -->
+	&nbsp;Search by Type: &nbsp
+	<select ng-model="c.searchType">
+		<option value="" disabled selected>Select a Type</option>
+		<option value="FOOD">Food</option>
+		<option value="ELECTRICTY">Electricity</option>
+		<option value="RESTAURANTS">Restaurants</option>
+		<option value="HEALTH">Health</option>
+		<option value="SPORTS">Sports</option>
+		<option value="CAMPING">Camping</option>
+		<option value="TRAVELLING">Traveling</option>
+	</select>
+
+	<button ng-click="c.searchByType()">
+		<img alt="Search" src="../Ico/search.png" height="19px">
+	</button>
+	<br />
+	<br />
+
+	<!-- ============================================================================================== -->
+	<!-- Search by Price -->
+	<!-- ============================================================================================== -->
+	&nbsp;Search by Price:
+	<input ng-model="c.searchPrice" placeholder="Enter maximum price...."
+		type="number">
+	<button ng-click="c.searchByPrice()">
+		<img alt="Search" src="../Ico/search.png" height="19px">
+	</button>
+	<br />
+	<br />
+
+	<!-- ============================================================================================== -->
+	<!-- Search by Date -->
+	<!-- ============================================================================================== -->
+	&nbsp;Search by Expire Date until:
+	<input type="date" ng-model="c.searchDate" min="2017-06-26">
+	<button ng-click="c.searchByDate()">
+		<img alt="Search" src="../Ico/search.png" height="19px">
+	</button>
+	<br />
+	<br />
+
+	<!-- ============================================================================================== -->
+	<!-- Create New Coupon -->
+	<!-- ============================================================================================== -->
+	<span ng-controller="createCouponCTRL as f">
+		<button ng-click="f.showCreate()">
+			<img alt="Create New Coupon" src="../Ico/addNewCoupon.png">
+		</button>
+		<div ng-show="f.createButton">
+			<ng-include src="'CreateCoupon.html'"></ng-include>
+		</div>
+	<br />
+</body>
+</html>

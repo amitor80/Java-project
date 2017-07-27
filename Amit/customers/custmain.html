@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<meta charset="windows-1255">
+<title>Main Customer Page</title>
+<head>
+<script src="../Scripts/angular.js"></script>
+<script src="../Scripts/angular-ui-router.js"></script>
+<script src="../Scripts/CustomerRoute.js"></script>
+<script src="../Scripts/CompanyMockService.js"></script>
+<script src="../Scripts/loginService.js"></script>
+<script src="../Scripts/custMainCTRL.js"></script>
+<script src="../Scripts/CustomerMockService.js"></script>
+<script src="../Scripts/buycouponCTRL.js"></script>
+<script src="../Scripts/manageCoupCTRL.js"></script>
+<script src="../Scripts/editcustCTRL.js"></script>
+<meta charset="windows-1255">
+<link rel="stylesheet" href="../CSS/main.css">
+<script src="../sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="../sweetalert-master/dist/sweetalert.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body class="w3-animate-zoom" ng-controller="customerMainCTRL as c">
+	<div ng-click="c.logout()">
+		<a href="">Logout <img alt="" src="../Ico/logout.png"> </a> 
+	</div>
+
+	<div style="text-align: center">
+		<img alt="companyPhoto" src="../Img/customer.png" width="300px"
+			height="300px" align="middle">
+	</div>
+
+	<ul class="row">
+		<li class="col-sm-3"><a href="#/main"><img alt="Main"
+				src="../Ico/main.png"></a></li>
+		<li class="col-sm-3"><a href="#/buyCoupon"><img
+				alt="Browse Coupons" src="../Ico/browse coupons.png"></a></li>
+		<li class="col-sm-3"><a href="#/shoppingCart"><img
+				alt="Shopping Cart" src="../Ico/shopping cart.png"></a></li>
+		<li class="col-sm-3"><a href="#/edit"><img
+				alt="edit" src="../Ico/edit.png"></a></li>
+	</ul>
+
+	<div ui-view class="w3-animate-bottom row">
+		<blockquote class="col-sm-12" style="text-align: center;">
+			<br /> Welcome Customer!<br /> We welcome you to try our newest
+			Coupon management system.<br /> Here you could explore, filter or
+			buy our latest Coupons.<br /> Don't forget to to use our most
+			advanced search tools.<br />
+			<footer>
+				<cite>Daniel Liverant</cite>
+			</footer>
+		</blockquote>
+	</div>
+</body>
+</html>

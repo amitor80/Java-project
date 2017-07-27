@@ -1,0 +1,14 @@
+<img src="addcom.jpg" style="margin-left:2%; margin-top:1%"><br><br>
+<p style="margin-left:2%">
+		ID  : <input type="text" ng-model="c.newCompany.id" style="margin-left:1.5%"
+			   placeholder="Company ID">
+</p>
+<p style="margin-left:2%">
+		NAME: <input type="text" ng-model="c.newCompany.name"
+				   placeholder="Company Name">
+	
+ 
+<input type="button" value="Create" style="margin-left:2%" ng-click="c.createCompany()" />
+<br><br>
+    <p ng-show="c.success" style="color:green; margin-left:2%">Company Successfully created!</p>
+    <p ng-show="c.failure" style="color:red; margin-left:2%">Company was NOT created!</p>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<script src="../Scripts/angular.js"></script>
+<script src="../Scripts/angular-ui-router.js"></script>
+<script src="../Scripts/CompanyRoute.js"></script>
+<script src="../Scripts/companyMainCTRL.js"></script>
+<script src="../Scripts/loginService.js"></script>
+<script src="../Scripts/CompanyMockService.js"></script>
+<script src="../Scripts/mockService.js"></script>
+<script src="../Scripts/manageCoup.js"></script>
+<script src="../Scripts/createCouponCTRL.js"></script>
+<script src="../Scripts/companyMainCTRL.js"></script>
+<script src="../sweetalert-master/dist/sweetalert.min.js"></script>
+<script src="../Scripts/editCompanyCTRL.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="../sweetalert-master/dist/sweetalert.css">
+<link rel="stylesheet" href="../CSS/main.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta charset="windows-1255">
+<title>Main Company Page</title>
+</head>
+<body class="w3-animate-zoom" ng-controller="companyMainCTRL as c">
+	<div ng-click="c.logout()">
+		<a href="">Logout<img alt="" src="../Ico/logout.png"></a> 
+	</div>
+
+	<div class="w3-animate-bottom">
+		<div style="text-align: center">
+			<img alt="companyPhoto" src="../Img/company.png" width="300px"
+				height="300px">
+		</div>
+		<ul class="row">
+			<li class="col-sm-4"><a href="#/main"><img alt="Home"
+					src="../Ico/main.png"></a></li>
+			<li class="col-sm-4"><a href="#/manageCoupons"><img
+					alt="Manage Coupons" src="../Ico/coupons.png"></a></li>
+			<li class="col-sm-4"><a href="#/edit"><img
+					alt="Edit" src="../Ico/edit.png"></a></li>
+		</ul>
+
+		<div ui-view class="w3-animate-bottom row">
+			<blockquote class="col-sm-12" style="text-align: center;">
+				<br /> Welcome Company Manager!<br /> We welcome you to try out
+				most convenient Managing experience.<br /> Designed with the most
+				advanced tools.<br /> Update, Delete or Create your Coupons - with
+				only one click!<br />
+				<footer>
+					<cite>Daniel Liverant</cite>
+				</footer>
+			</blockquote>
+		</div>
+	</div>
+	<!-- animation -->
+</body>
+</html>

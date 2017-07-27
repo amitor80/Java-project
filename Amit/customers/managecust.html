@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../Scripts/angular.js"></script>
+<script src="../Scripts/angular-ui-router.js"></script>
+<script src="../Scripts/AdminRoute.js"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<span class="w3-animate-bottom">
+	<!-- ============================================================================================== -->
+	<!-- Serach by ID box -->
+	<!-- ============================================================================================== -->
+	<button ng-click="m.getCustomer()"
+		style="margin-left: 459px; position: absolute;">
+		<img alt=" Seacrh by id" src="../Ico/search by id.png">
+	</button>
+	<!-- ============================================================================================== -->
+	<!-- New Customer form -->
+	<!-- ============================================================================================== -->
+	<button ng-click="m.createCustomerShow()" style="margin-left: 778px; position: absolute;">
+		<img alt="Create" src="../Ico/addNewCustomer.png">
+	</button>
+	<span ng-show="m.createCustomerButton">
+	<br/>
+		<span ng-app="myApp" ng-controller="createCustomerCTRL as cs">
+			<ng-include src="'createCustomer.html'"></ng-include>
+		<button ng-click="g.hide()" style="margin-left: 680px; height: 40px; width: 80px; position: absolute; color: black;">Hide</button>
+		</span>
+		<br/>
+	</span>
+	<br />
+	<!-- ============================================================================================== -->
+	<!-- Result of the search table -->
+	<!-- ============================================================================================== -->
+	<span ng-show="m.showCustomer">
+	<br/>
+		<table border="1" style="width: 530px; margin-left: 460px">
+			<tr>
+				<th>ID</th>
+				<th>NAME</th>
+				<th>ACTIONS</th>
+			</tr>
+			<tr>
+				<td>{{m.customer.id}}</td>
+				<td>{{m.customer.cust_name}}</td>
+				<td><button data-ng-click="m.deleteCustomer(m.customer.id)">
+						<img alt="X" src="../Ico/x.png" width="20px" height="20px">
+					</button>
+					<button name="update" ng-click="m.showUpdateCustomer()">
+						<img alt="O" src="../Ico/edit.png" width="20px" height="20px">
+					</button></td>
+				<td ng-show="m.show">Customer id: <input
+					value="{{m.customer.id}}" disabled="disabled"><br />
+					Customer name: <input value="{{m.customer.cust_name}}"
+					ng-model="m.customer.cust_name"><br /> <br />
+					<button ng-click="m.hideUpdateCustomer(m.customer)">Save</button>
+				</td>
+			</tr>
+		</table> <br/>
+			<button ng-click="m.hide()" style="margin-left: 680px; height: 40px; width: 80px; position: absolute; color: black;">Hide</button>
+		<br/>
+		<br/>
+	</span>
+
+	<!-- ============================================================================================== -->
+	<!-- All Customers table -->
+	<!-- ============================================================================================== -->
+	<br />
+	<table id="myTable" border="1" style="margin-left: 460px; width: 530px">
+		<tr>
+			<th ng-click="m.orderBy('id')"><span ng-if="m.goUp">ID▼</span><span ng-if="!m.goUp">ID▲</span></th>
+			<th ng-click="m.orderBy('cust_name')"><span ng-if="m.goUp">NAME▼</span><span ng-if="!m.goUp">NAME▲</span></th>
+			<th>actions</th>
+		</tr>
+		<tr ng-repeat="c in m.customers | orderBy: m.order : m.goUp">
+			<td>{{c.id}}</td>
+			<td>{{c.cust_name}}</td>
+			<td><button data-ng-click="m.deleteCustomer(c.id)">
+					<img alt="X" src="../Ico/x.png" width="20px" height="20px">
+				</button>
+				<button name="update" ng-click="m.showUpdateCustomer()">
+					<img alt="O" src="../Ico/edit.png" width="20px" height="20px">
+				</button></td>
+			<td ng-show="m.show">Customer id: <input value="{{c.id}}"
+				disabled="disabled"><br /> Customer name: <input
+				value="{{c.cust_name}}" ng-model="c.cust_name"><br />
+				<button ng-click="m.hideUpdateCustomer(c)">Save</button>
+			</td>
+		</tr>
+	</table>
+	</span>
+</body>
+</html>
